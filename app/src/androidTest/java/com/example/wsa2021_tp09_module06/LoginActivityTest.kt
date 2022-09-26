@@ -32,7 +32,7 @@ class LoginActivityTest {
         activityScenarioRule.scenario.onActivity {
 
             with(it.binding) {
-                txtuser.textJD = "Juan"
+                txtuser.textJD = "Juan  "
                 txtPass.textJD = "12345"
             }
             var result = it.Validar()
@@ -44,6 +44,8 @@ class LoginActivityTest {
         }
 
     }
+
+
     @Test
     fun WhenIsNotValido() {
         activityScenarioRule.scenario.onActivity {
