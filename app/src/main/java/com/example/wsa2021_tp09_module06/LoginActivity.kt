@@ -11,7 +11,6 @@ import com.example.wsa2021_tp09_module06.helper.Requerido
 
 class LoginActivity : AppCompatActivity() {
     override fun onBackPressed() {
-
         Toast.makeText(this, "not permitted to go back", Toast.LENGTH_SHORT).show()
     }
 
@@ -24,11 +23,16 @@ class LoginActivity : AppCompatActivity() {
         Load()
     }
 
+    fun viewToValid():java.util.ArrayList<View> = with(binding) {
+        return@with arrayListOf<View>(txtSuser, txtSpass)
+    }
     fun Load() {
+
         with(binding) {
             txtPass.Requerido(txtSpass)
             txtuser.Requerido(txtSuser)
             btnLogin.setOnClickListener {
+                Toast.makeText(this@LoginActivity, "it was clicked",Toast.LENGTH_SHORT).show()
                 Validar()
             }
         }
@@ -37,7 +41,6 @@ class LoginActivity : AppCompatActivity() {
     fun Validar(): Boolean {
         with(binding) {
             var lista = arrayListOf<View>(txtSuser, txtSpass)
-            Log.e("TAG", "Validar: ${lista.IsValido()}" )
             return lista.IsValido()
         }
 

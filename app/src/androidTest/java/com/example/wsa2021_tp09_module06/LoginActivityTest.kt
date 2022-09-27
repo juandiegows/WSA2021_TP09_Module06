@@ -5,6 +5,8 @@ import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
@@ -45,16 +47,16 @@ class LoginActivityTest {
 
     }
 
-
     @Test
     fun WhenIsNotValido() {
         activityScenarioRule.scenario.onActivity {
-
             with(it.binding) {
                 txtuser.textJD = ""
-                txtPass.textJD = "12345"
+                txtPass.textJD = ""
+                btnLogin.performClick()
             }
-            var result = it.Validar()
+
+            var result = it.viewToValid().IsValido()
             if (!result)
                 assertTrue(true)
             else

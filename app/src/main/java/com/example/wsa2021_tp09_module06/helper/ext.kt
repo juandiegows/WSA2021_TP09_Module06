@@ -41,3 +41,4 @@ fun ArrayList<View>.IsValido():Boolean {
     }
     return isvalido
 }
+
