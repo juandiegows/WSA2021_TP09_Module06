@@ -89,7 +89,10 @@ class LoginActivity : AppCompatActivity() {
                         setVisibleButtom()
                         if(response.isSuccessful){
                             if(response.code == 200){
-                                Singleton.UserLogin = JSONObject(response.body!!.string()).getJSONObject("Data").toClass(User::class.java.name).Cast()
+                                Singleton.UserLogin =
+                                    JSONObject(response.body!!.string())
+                                        .getJSONObject("Data")
+                                        .toClass(User::class.java.name).Cast()
                                 startActivity(Intent(this@LoginActivity, PrincipalActivity::class.java))
                             }
                         }else {

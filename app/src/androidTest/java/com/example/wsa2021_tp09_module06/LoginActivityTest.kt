@@ -39,7 +39,7 @@ class LoginActivityTest {
 
     @get:Rule
     var activityScenarioRule: ActivityScenarioRule<LoginActivity> =
-        ActivityScenarioRule<LoginActivity>(LoginActivity::class.java)
+        ActivityScenarioRule(LoginActivity::class.java)
 
 
     @Test
