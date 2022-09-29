@@ -99,7 +99,7 @@ class LoginActivity : AppCompatActivity() {
                             if(response.code == 401){
                                 this@LoginActivity.AlertJD("User or password incorrect") {  };
                             }
-
+                            Log.e("TAG", "onResponse: ${response.code}" )
                         }
                     }
 
