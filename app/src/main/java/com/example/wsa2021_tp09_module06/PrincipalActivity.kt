@@ -3,6 +3,7 @@ package com.example.wsa2021_tp09_module06
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -17,12 +18,19 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 import com.example.wsa2021_tp09_module06.databinding.ActivityPrincipalBinding
 import com.example.wsa2021_tp09_module06.databinding.AppBarPrincipalBinding
+import com.example.wsa2021_tp09_module06.databinding.ConfirmYesNoBinding
 import com.example.wsa2021_tp09_module06.databinding.NavHeaderPrincipalBinding
 import com.example.wsa2021_tp09_module06.helper.AlertJD
 import com.example.wsa2021_tp09_module06.helper.Cast
+import com.example.wsa2021_tp09_module06.helper.IServices
 import com.example.wsa2021_tp09_module06.helper.Singleton
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.Response
+import java.io.IOException
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -86,7 +94,10 @@ class PrincipalActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.principal, menu)
+        if (Singleton.typeMenu === Singleton.menu.normal)
+            menuInflater.inflate(R.menu.principal, menu)
+        if (Singleton.typeMenu === Singleton.menu.menuDetails)
+            menuInflater.inflate(R.menu.menu_details, menu)
         return true
     }
 
@@ -95,6 +106,50 @@ class PrincipalActivity : AppCompatActivity() {
             R.id.itemInfo -> {
                 this.AlertJD("V1.0.0 Desenvolvido por Juan Diego <DR> WSA 2021.") {
 
+                }
+            }
+            R.id.itemDelete -> {
+                var bindingAlert = ConfirmYesNoBinding.bind(
+                    LayoutInflater.from(this)
+                        .inflate(R.layout.confirm_yes_no, null, false)
+                )
+
+
+                var aler = AlertDialog.Builder(this)
+                    .setView(bindingAlert.root)
+                    .create()
+                aler.show()
+                bindingAlert.btnNo.setOnClickListener {
+                    aler.hide()
+                }
+                bindingAlert.btnYes.setOnClickListener {
+
+                    aler.hide()
+                    IServices.okhttp.newCall(IServices.Delete("api/relatos/${Singleton.relatos.id}"))
+                        .enqueue(
+
+                            object : Callback {
+                                override fun onFailure(call: Call, e: IOException) {
+                                    TODO("Not yet implemented")
+                                }
+
+                                override fun onResponse(call: Call, response: Response) {
+
+                                    this@PrincipalActivity.runOnUiThread {
+                                        Toast.makeText(
+                                            this@PrincipalActivity,
+                                            "has been removed successful",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                       Navigation.findNavController(this@PrincipalActivity, R.id.nav_host_fragment_content_principal)
+                                            .navigate(R.id.reportFragment)
+
+                                    }
+
+                                }
+                            }
+
+                        )
                 }
             }
         }

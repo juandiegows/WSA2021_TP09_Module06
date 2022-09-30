@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.wsa2021_tp09_module06.databinding.AppBarPrincipalBinding
 import com.example.wsa2021_tp09_module06.databinding.FragmentHomeBinding
+import com.example.wsa2021_tp09_module06.helper.Singleton
 
 class HomeFragment : Fragment() {
 
@@ -33,6 +34,10 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel}
         var act = this.requireActivity() as PrincipalActivity
-        act.binding.appBarPrincipal.imgTree.visibility = View.GONE    }
+        act.binding.appBarPrincipal.imgTree.visibility = View.GONE
+        Singleton.typeMenu = Singleton.menu.normal
+        act.invalidateMenu()
+
+    }
 
 }

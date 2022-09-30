@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wsa2021_tp09_module06.adapters.RelatosRecyAdapter
 import com.example.wsa2021_tp09_module06.databinding.FragmentReportBinding
 import com.example.wsa2021_tp09_module06.databinding.FragmentVisualizarBinding
+import com.example.wsa2021_tp09_module06.helper.Singleton
 
 class ReportFragment : Fragment() {
 
@@ -31,11 +32,13 @@ class ReportFragment : Fragment() {
 
         var act = this.requireActivity() as PrincipalActivity
         act.binding.appBarPrincipal.imgTree.visibility = View.VISIBLE
+        Singleton.typeMenu = Singleton.menu.empty
+        act.invalidateMenu()
         return binding.root
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
+
         if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
             binding.recyRelato.layoutManager =GridLayoutManager(this@ReportFragment.requireActivity(),2)
         } else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
@@ -44,6 +47,7 @@ class ReportFragment : Fragment() {
 
                 }
         }
+        super.onConfigurationChanged(newConfig)
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

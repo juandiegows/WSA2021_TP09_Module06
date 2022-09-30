@@ -1,5 +1,6 @@
 package com.example.wsa2021_tp09_module06.adapters
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Handler
@@ -38,11 +39,15 @@ class RelatosRecyAdapter(val activity: Activity, var list: ArrayList<Relatos>) :
         return viewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: viewHolder, position: Int) {
+    override fun onBindViewHolder(holder: viewHolder, @SuppressLint("RecyclerView") position: Int) {
         with(holder.binding) {
             with(list.get(position)) {
                 txtRelato.setText(nome)
                 txtTel.setText(telefone)
+                if(txtRelato.text.toString()=="null"){
+                    txtRelato.setText("Anonimo")
+                    txtTel.setText("anonimo")
+                }
                 txtlotitud.setText(latitude.toString())
                 txtlotitudde.setText(longitude.toString())
                 holder.binding.root.setOnClickListener {

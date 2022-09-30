@@ -10,4 +10,5 @@ class Relatos {
      var usuarioid= ""
      var nome = ""
      var telefone = ""
+     var email = ""
 }

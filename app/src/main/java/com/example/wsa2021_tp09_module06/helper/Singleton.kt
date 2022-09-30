@@ -14,4 +14,10 @@ object Singleton {
             funcaoid = 2
         }
     }
+    enum class menu{
+        normal,
+        empty,
+        menuDetails
+    }
+    var typeMenu:menu = menu.normal
 }

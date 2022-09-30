@@ -43,12 +43,15 @@
                 android:id="@+id/txtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Retrato" />
 
             <TextView
                 android:id="@+id/txtDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:text="TextView" />
 
             <LinearLayout
@@ -57,11 +60,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/txtlatitu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="18" />
+                    android:layout_weight=".5"
+                    android:text="18"
+                    android:textAlignment="center" />
 
                 <TextView
                     android:id="@+id/textView10"
@@ -71,11 +75,12 @@
                     android:text=" X " />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/txtlongitu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="18" />
+                    android:layout_weight=".5"
+                    android:text="18"
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -84,21 +89,24 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/txtAutor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/txtTelAutor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/txtEmailAutor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="TextView" />
             </LinearLayout>
         </LinearLayout>
