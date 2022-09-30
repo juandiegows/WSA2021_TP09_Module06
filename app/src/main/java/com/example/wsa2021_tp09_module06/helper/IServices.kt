@@ -18,5 +18,6 @@ object IServices {
     fun Get(address:String):Request = Request.Builder().url("$URL/$address").get().build()
     fun Post(address:String, body: RequestBody):Request = Request.Builder().url("$URL/$address").post(body).build()
     fun Put(address:String, body: RequestBody):Request = Request.Builder().url("$URL/$address").put(body).build()
+    fun Delete(address:String):Request = Request.Builder().url("$URL/$address").delete().build()
 
 }
