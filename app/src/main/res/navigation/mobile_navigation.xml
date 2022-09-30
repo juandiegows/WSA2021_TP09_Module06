@@ -7,16 +7,21 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.wsa2021_tp09_module06.HomeFragment"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/reportFragment"
         android:name="com.example.wsa2021_tp09_module06.ReportFragment"
-        android:label="fragment_report"
+        android:label=" "
         tools:layout="@layout/fragment_report" />
     <fragment
         android:id="@+id/visualizarFragment"
         android:name="com.example.wsa2021_tp09_module06.VisualizarFragment"
         android:label="fragment_visualizar"
         tools:layout="@layout/fragment_visualizar" />
+    <fragment
+        android:id="@+id/detalleRelatoFragment"
+        android:name="com.example.wsa2021_tp09_module06.DetalleRelatoFragment"
+        android:label="fragment_detalle_relato"
+        tools:layout="@layout/fragment_detalle_relato" />
 </navigation>

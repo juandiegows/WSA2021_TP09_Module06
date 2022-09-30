@@ -1,8 +1,11 @@
 package com.example.wsa2021_tp09_module06
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
@@ -15,6 +18,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wsa2021_tp09_module06.databinding.ActivityPrincipalBinding
+import com.example.wsa2021_tp09_module06.databinding.AppBarPrincipalBinding
 import com.example.wsa2021_tp09_module06.databinding.NavHeaderPrincipalBinding
 import com.example.wsa2021_tp09_module06.helper.AlertJD
 import com.example.wsa2021_tp09_module06.helper.Cast
@@ -28,6 +32,11 @@ class PrincipalActivity : AppCompatActivity() {
         Toast.makeText(this, "not permitted to go back", Toast.LENGTH_LONG).show()
     }
 
+    fun OcultarTree(context: Activity) {
+        var bindingLocal = context.findViewById<View>(R.id.imgTree)
+        bindingLocal.visibility = View.GONE;
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,19 +45,18 @@ class PrincipalActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarPrincipal.toolbar)
 
-        binding.appBarPrincipal.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
 
         val navView: NavigationView = binding.navView
         var headerJD = NavHeaderPrincipalBinding.bind(navView.getHeaderView(0))
         headerJD.txtName.text = Singleton.UserLogin.nome
         headerJD.textView.text = Singleton.UserLogin.email
-        navView.menu.findItem(R.id.itemExit).setOnMenuItemClickListener {
-        drawerLayout.closeDrawer(navView)
+        if (Singleton.GetUser().funcaoid != 1)
+            navView.menu.findItem(R.id.visualizarFragment).isEnabled = false
 
+        navView.menu.findItem(R.id.itemExit).setOnMenuItemClickListener {
+            drawerLayout.closeDrawer(navView)
             AlertDialog.Builder(this)
                 .setTitle("logout")
                 .setMessage("Are you sure, I want to logout?")
@@ -68,13 +76,12 @@ class PrincipalActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.homeFragment, R.id.reportFragment, R.id.visualizarFragment
+                R.id.homeFragment, R.id.visualizarFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

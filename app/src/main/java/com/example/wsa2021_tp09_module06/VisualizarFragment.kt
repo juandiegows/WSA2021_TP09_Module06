@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.wsa2021_tp09_module06.databinding.FragmentVisualizarBinding
 
 class VisualizarFragment : Fragment() {
 
@@ -14,12 +15,15 @@ class VisualizarFragment : Fragment() {
     }
 
     private lateinit var viewModel: VisualizarViewModel
-
+lateinit var  binding: FragmentVisualizarBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_visualizar, container, false)
+        binding = FragmentVisualizarBinding.inflate(layoutInflater)
+        var act = this.requireActivity() as PrincipalActivity
+        act.binding.appBarPrincipal.imgTree.visibility = View.VISIBLE
+        return  binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
