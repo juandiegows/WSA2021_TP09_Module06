@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.observe
 
 class DetalleRelatoFragment : Fragment() {
 
@@ -26,6 +27,11 @@ class DetalleRelatoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(DetalleRelatoViewModel::class.java)
         // TODO: Use the ViewModel
+
+        viewModel.relato.observe(viewLifecycleOwner){
+
+        }
+        viewModel.GetRelato()
     }
 
 }
