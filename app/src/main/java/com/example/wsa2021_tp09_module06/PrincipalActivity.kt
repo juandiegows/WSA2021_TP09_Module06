@@ -61,9 +61,9 @@ class PrincipalActivity : AppCompatActivity() {
         var headerJD = NavHeaderPrincipalBinding.bind(navView.getHeaderView(0))
         headerJD.txtName.text = Singleton.UserLogin.nome
         headerJD.textView.text = Singleton.UserLogin.email
-        if (Singleton.GetUser().funcaoid != 1)
-            navView.menu.findItem(R.id.visualizarFragment).isEnabled = false
-
+        /*  if (Singleton.GetUser().funcaoid != 1)
+              navView.menu.findItem(R.id.visualizarFragment).isEnabled = false
+  */
         navView.menu.findItem(R.id.itemExit).setOnMenuItemClickListener {
             drawerLayout.closeDrawer(navView)
             AlertDialog.Builder(this)
