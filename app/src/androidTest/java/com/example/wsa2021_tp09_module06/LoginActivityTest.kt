@@ -48,9 +48,8 @@ class LoginActivityTest {
 
             with(it.binding) {
                 txtuser.textJD = "Juan  "
-                txtPass.textJD = "12345"
             }
-            var result = it.Validar()
+            var result =  it.binding.txtuser.textJD.isEmpty()
 
             if (result)
                 assertTrue(true)
@@ -110,34 +109,35 @@ class LoginActivityTest {
     }
 
     @Test
-    fun WhenLoginSuccessful(){
+    fun WhenLoginSuccessful() {
         activityScenarioRule.scenario.onActivity {
-          var response =   IServices.okhttp.newCall(
+            var response = IServices.okhttp.newCall(
                 IServices.Post(
                     "api/auth",
                     UserLogin().apply {
-                            Username = "tati@katana.com.br"
-                            Password = "12345"
+                        Username = "tati@katana.com.br"
+                        Password = "12345"
 
                     }.toJson()
                         .toRequestBody("application/json".toMediaType())
                 )
-            ).enqueue(object :Callback{
-              override fun onFailure(call: Call, e: IOException) {
-                  TODO("Not yet implemented")
-              }
+            ).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    TODO("Not yet implemented")
+                }
 
-              override fun onResponse(call: Call, response: Response) {
-                  assertTrue(response.code == 200)
-              }
-          })
+                override fun onResponse(call: Call, response: Response) {
+                    assertTrue(response.code == 200)
+                }
+            })
 
         }
 
     }
-    fun WhenLoginIncorrect(){
+
+    fun WhenLoginIncorrect() {
         activityScenarioRule.scenario.onActivity {
-           IServices.okhttp.newCall(
+            IServices.okhttp.newCall(
                 IServices.Post(
                     "api/auth",
                     UserLogin().apply {
@@ -147,7 +147,7 @@ class LoginActivityTest {
                     }.toJson()
                         .toRequestBody("application/json".toMediaType())
                 )
-            ).enqueue(object :Callback{
+            ).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
 
                 }

@@ -23,5 +23,14 @@
         android:id="@+id/detalleRelatoFragment"
         android:name="com.example.wsa2021_tp09_module06.DetalleRelatoFragment"
         android:label="fragment_detalle_relato"
-        tools:layout="@layout/fragment_detalle_relato" />
+        tools:layout="@layout/fragment_detalle_relato" >
+        <action
+            android:id="@+id/action_detalleRelatoFragment_self"
+            app:destination="@id/detalleRelatoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditRelatoFragment"
+        android:name="com.example.wsa2021_tp09_module06.AddEditRelatoFragment"
+        android:label="fragment_add_edit_relato"
+        tools:layout="@layout/fragment_add_edit_relato" />
 </navigation>

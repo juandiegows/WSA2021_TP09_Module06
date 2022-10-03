@@ -78,11 +78,11 @@ fun ArrayList<View>.IsValido(): Boolean {
         it.requestFocus()
         it.clearFocus()
         if (it is TextInputLayout) {
-            Log.e("TAG", "IsValido: ${it.error.toString()}")
             if (!it.error.isNullOrEmpty()) {
                 isvalido = false
             }
         }
+
     }
     return isvalido
 }

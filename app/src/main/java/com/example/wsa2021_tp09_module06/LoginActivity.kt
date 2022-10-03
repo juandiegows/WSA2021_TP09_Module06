@@ -97,7 +97,10 @@ class LoginActivity : AppCompatActivity() {
                             }
                         }else {
                             if(response.code == 401){
-                                this@LoginActivity.AlertJD("User or password incorrect") {  };
+                                this@LoginActivity.AlertJD("User or password incorrect") {
+
+
+                                };
                             }
                             Log.e("TAG", "onResponse: ${response.code}" )
                         }
@@ -161,6 +164,5 @@ class LoginActivity : AppCompatActivity() {
             var lista = arrayListOf<View>(txtSuser, txtSpass)
             return lista.IsValido()
         }
-
     }
 }

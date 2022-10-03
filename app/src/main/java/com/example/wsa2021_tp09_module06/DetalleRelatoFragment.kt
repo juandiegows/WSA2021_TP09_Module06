@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import com.example.wsa2021_tp09_module06.databinding.FragmentDetalleRelatoBinding
 import com.example.wsa2021_tp09_module06.helper.Singleton
 
@@ -29,6 +30,13 @@ class DetalleRelatoFragment : Fragment() {
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
+        // TODO: Use the ViewModel
+        if (requireActivity() is PrincipalActivity) {
+            var activity = requireActivity()
+            Singleton.typeMenu = Singleton.menu.menuDetails
+            activity.invalidateMenu()
+            this.onCreate(null);
+        }
 
         super.onConfigurationChanged(newConfig)
     }
@@ -37,9 +45,12 @@ class DetalleRelatoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(DetalleRelatoViewModel::class.java)
         // TODO: Use the ViewModel
-        var activity = requireActivity() as PrincipalActivity
-        Singleton.typeMenu = Singleton.menu.menuDetails
-        activity.invalidateMenu()
+        if (requireActivity() is PrincipalActivity) {
+            var activity = requireActivity()
+            Singleton.typeMenu = Singleton.menu.menuDetails
+            activity.invalidateMenu()
+        }
+
         viewModel.relato.observe(viewLifecycleOwner) {
             with(binding) {
                 txtDescription.setText(it.relato)

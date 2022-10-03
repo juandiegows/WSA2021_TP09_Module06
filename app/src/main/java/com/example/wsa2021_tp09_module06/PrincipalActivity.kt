@@ -2,6 +2,7 @@ package com.example.wsa2021_tp09_module06
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -101,12 +102,25 @@ class PrincipalActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if (this.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            menu?.findItem(R.id.itemDelete)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+            menu?.findItem(R.id.Item_Edit)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.itemInfo -> {
                 this.AlertJD("V1.0.0 Desenvolvido por Juan Diego <DR> WSA 2021.") {
 
                 }
+            }
+            R.id.Item_Edit -> {
+                Navigation.findNavController(this, R.id.nav_host_fragment_content_principal)
+                    .navigate(R.id.addEditRelatoFragment)
             }
             R.id.itemDelete -> {
                 var bindingAlert = ConfirmYesNoBinding.bind(
@@ -141,7 +155,10 @@ class PrincipalActivity : AppCompatActivity() {
                                             "has been removed successful",
                                             Toast.LENGTH_LONG
                                         ).show()
-                                       Navigation.findNavController(this@PrincipalActivity, R.id.nav_host_fragment_content_principal)
+                                        Navigation.findNavController(
+                                            this@PrincipalActivity,
+                                            R.id.nav_host_fragment_content_principal
+                                        )
                                             .navigate(R.id.reportFragment)
 
                                     }
